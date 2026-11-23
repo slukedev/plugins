@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": ["node"],
+    "paths": {
+      "@ardia/plugin-sdk": ["./support/sdk.ts"]
+    }
+  },
+  "include": ["support", "../src"]
+}
