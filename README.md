@@ -12,7 +12,19 @@ Install the `ardia` command: in Ardia, open **Settings**, search for **command l
 | Plugin | What it does | Needs |
 |---|---|---|
 | [`cli`](plugins/cli) | The `ardia` command: drive Ardia, read pages and run its commands from your terminal or an agent. Built into Ardia: install it in one click from **Settings › Plugins**. | Ardia on macOS |
+| [`1password`](plugins/1password) | Fills and saves logins and one-time codes from 1Password, approved in the 1Password app. A source in Ardia's password manager. | Ardia on macOS, the 1Password app and its CLI (`op`) |
+| [`bitwarden`](plugins/bitwarden) | Fills and saves logins, one-time codes and passkeys from Bitwarden, including EU and self-hosted servers. A source in Ardia's password manager. | Ardia on macOS and the Bitwarden CLI (`bw`) |
 | [`compact-command-bar`](plugins/compact-command-bar/plugin.json) | ⌘T stops listing your pinned tabs and Top Apps, and shows at most 5 open tabs before you type. Typing still finds every tab. | Ardia 0.2.46-nightly.4 |
+| [`protonpass`](plugins/protonpass) | Fills and saves logins and one-time codes from Proton Pass, signed in through proton.me. A source in Ardia's password manager. | Ardia on macOS and the Proton Pass CLI (`pass-cli`) |
+
+## Password managers
+
+`1password`, `bitwarden` and `protonpass` are Ardia's official password manager plugins. Each one is a source inside
+Ardia's own password manager: it reads and saves logins through the manager's own command line program, and Ardia
+fills them. Ardia fetches and installs them itself from **Settings › Passwords › Password Managers › Add Password
+Manager…**, so `install.sh` doesn't list them. They run only from Ardia's official copies, ask for no permissions, and
+run their program only through the commands their `plugin.json` lists. Each folder's README says what it needs and
+how to build and test it.
 
 ## Install
 
