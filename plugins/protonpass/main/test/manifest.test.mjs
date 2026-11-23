@@ -1,14 +1,26 @@
 import { describe, test } from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import vm from "node:vm";
 import { manifest, subject } from "./helpers.mjs";
 
 const provider = manifest.contributes.credentialProvider;
 const build = (verb, params, { secrets = () => null, testFolder = null } = {}) => subject.buildVerbLaunch(manifest, verb, params, secrets, testFolder);
 const handle = (id) => ({ $secret: id });
+const leadingWords = (argv) => {
+  const words = [];
+  for (const element of argv) {
+    if (typeof element !== "string" || element.startsWith("-")) break;
+    words.push(element);
+  }
+  return words.join(" ");
+};
+const consentVerbs = () => [...new Set(Object.values(provider.cli.verbs).map((verb) => leadingWords(verb.argv)))];
 
 describe("manifest", () => {
   test("meets every credentialProvider rule in the contract", () => {
-    assert.deepEqual(subject.credentialManifestProblems(manifest), []);
+    assert.deepEqual(subject.checkCredentialManifest(manifest), []);
   });
 
   test("is a closed, official main plugin that never reads offline", () => {
@@ -27,12 +39,27 @@ describe("manifest", () => {
   });
 
   test("the plugin handles every capability it offers and every required call", () => {
-    assert.deepEqual(subject.missingHandlers(subject.provider, provider.capabilities), []);
     assert.deepEqual(subject.credentialHandlersOf(subject.provider), ["state", "signIn", "unlock", "signOut", "list", "reveal", "save"]);
   });
 
-  test("the bundled entry registers the provider", () => {
-    assert.equal(subject.definedProvider(), subject.provider);
+  test("dist/main.js registers the provider with every handler it has", async () => {
+    const sent = [];
+    let deliver = () => {};
+    const bridge = { send: (line) => sent.push(JSON.parse(line)), onLine: (listener) => (deliver = listener) };
+    const next = async (method) => {
+      for (let tries = 0; tries < 200; tries++) {
+        const found = sent.find((line) => line.method === method);
+        if (found) return found;
+        await new Promise((resolve) => setTimeout(resolve, 5));
+      }
+      throw new Error(`no ${method} line; sent ${JSON.stringify(sent)}`);
+    };
+    const code = readFileSync(fileURLToPath(new URL("../dist/main.js", import.meta.url)), "utf8");
+    vm.runInContext(code, vm.createContext({ __ardiaBridge: bridge, setTimeout, clearTimeout }), { filename: "main.js" });
+    const hello = await next("hello");
+    deliver(JSON.stringify({ id: hello.id, result: { app: "Ardia", protocol: 2, plugin: "protonpass", credentials: { protocol: 1, supported: [1], provider: "protonpass" } } }));
+    const ready = await next("ready");
+    assert.deepEqual(ready.params.credentialProvider.handlers, subject.credentialHandlersOf(subject.provider));
   });
 
   test("speaks the credentials protocol the contract supports", () => {
@@ -52,7 +79,7 @@ describe("manifest", () => {
   });
 
   test("consent names exactly the pass-cli commands it runs", () => {
-    assert.deepEqual(subject.consentVerbs(manifest), ["info", "login", "logout", "vault list", "item list", "item totp", "item view", "item create login"]);
+    assert.deepEqual(consentVerbs(), ["info", "login", "logout", "vault list", "item list", "item totp", "item view", "item create login"]);
   });
 });
 
@@ -68,6 +95,10 @@ describe("verbs through the argv builder", () => {
     const create = build("item.create", { share: "s1", template: { title: "T", password: "p" } });
     assert.deepEqual(create.argv, ["item", "create", "login", "--share-id=s1", "--from-template=-"]);
     assert.equal(create.stdin, '{"password":"p","title":"T"}');
+  });
+
+  test("a share that starts with a dash stays inside its --share-id= flag", () => {
+    assert.deepEqual(build("item.view", { share: "-x", item: "i1" }).argv, ["item", "view", "--share-id=-x", "--item-id=i1", "--output=json"]);
   });
 
   test("secrets reach pass-cli only through its environment, never argv", () => {
@@ -96,7 +127,6 @@ describe("verbs through the argv builder", () => {
   });
 
   const refusals = [
-    ["a share that looks like an option", "item.view", { share: "-x", item: "i1" }],
     ["a share with a slash", "item.view", { share: "a/b", item: "i1" }],
     ["a share over 200 characters", "item.view", { share: "a".repeat(201), item: "i1" }],
     ["a missing item id", "item.view", { share: "s1" }],

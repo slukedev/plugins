@@ -110,7 +110,7 @@ describe("verb launches built from the catalog", () => {
     assert.ok(launch("login.password", { email: "-x@example.com", password: handle(PASSWORD) }).refused);
     assert.ok(launch("login.password", { email: "me@example.com", password: handle(PASSWORD), code: "12 34" }).refused);
     assert.ok(launch("login.password", { email: "me@example.com", password: handle(PASSWORD), method: "2" }).refused);
-    assert.deepEqual(launch("login.password", { email: "me@example.com", password: "typed in the clear" }), { refused: "password for login.password must be a handle." });
+    assert.deepEqual(launch("login.password", { email: "me@example.com", password: "typed in the clear" }), { refused: "password for login.password must be a secret handle." });
     assert.deepEqual(launch("status", { session: handle(SESSION_KEY), pin: "1" }), { refused: "status has no slot named pin." });
     assert.deepEqual(launch("list.all", {}), { refused: "bw has no verb list.all." });
   });

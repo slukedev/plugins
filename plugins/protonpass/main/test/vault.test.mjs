@@ -146,7 +146,8 @@ describe("list", () => {
         stdout: itemsJson(
           entry({ id: "direct001", totp: TOTP_URI }),
           entry({ id: "extra0001", extraTotp: "otpauth://totp/x?secret=JBSWY3DPEHPK3PXP&period=60" }),
-          entry({ id: "broken001", totp: "not a uri" }),
+          entry({ id: "bare00001", totp: "not a uri" }),
+          entry({ id: "broken001", totp: "not!base32" }),
           entry({ id: "plain0001" }),
         ),
       }],
@@ -154,6 +155,7 @@ describe("list", () => {
     const items = Object.fromEntries((await listAll(h)).items.map((item) => [item.id, item]));
     assert.equal(items["s1/direct001"].secrets.totp, TOTP_URI);
     assert.equal(items["s1/extra0001"].totpPeriod, 60);
+    assert.equal(items["s1/bare00001"].secrets.totp, "not a uri");
     assert.equal(items["s1/broken001"].hasTotp, true);
     assert.equal(items["s1/broken001"].secrets.totp, undefined);
     assert.equal(items["s1/plain0001"].hasTotp, false);

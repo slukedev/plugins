@@ -1,7 +1,9 @@
 import { readFileSync } from "node:fs";
-import * as subject from "./.build/subject.mjs";
+import { mock } from "node:test";
+import { fileURLToPath } from "node:url";
+import { bundleForTests } from "../build.mjs";
 
-export { subject };
+export const subject = await bundleForTests(fileURLToPath(new URL("./entry.ts", import.meta.url)));
 export const manifest = JSON.parse(readFileSync(new URL("../../plugin.json", import.meta.url), "utf8"));
 
 export const PASSWORD = "fixture-password-Q7x!";
@@ -39,8 +41,10 @@ export function fakeCli(rules) {
   };
 }
 
+const mockClock = { now: () => Date.now(), tick: (ms) => mock.timers.tick(ms) };
+
 export function harness(rules, context = {}) {
-  return subject.createCredentialHarness({ provider: subject.provider, manifest, cli: fakeCli(rules), context: { session: { key: null }, ...context } });
+  return subject.createCredentialHarness({ provider: subject.provider, manifest, cli: fakeCli(rules), context: { session: { key: null }, ...context }, timers: mockClock });
 }
 
 export const argvOf = (h) => h.launches.map((launch) => launch.argv.join(" "));

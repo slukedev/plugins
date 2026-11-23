@@ -3,11 +3,10 @@
 #   Builds the Proton Pass plugin folder into <out dir>/protonpass: plugin.json with its version set and dist/main.js
 #   built from plugins/protonpass/main with npm. The version is $ARDIA_PLUGIN_VERSION, else plugin.json's. The plugin is
 #   JavaScript only, so one arch-neutral artifact serves every Mac: <out dir>/protonpass-plugin-<version>.tar.gz and its
-#   .sha256, packed as Ardia's release fetches it. ARDIA_PLUGIN_SDK_INDEX, when set, bundles against that
-#   @ardia/plugin-sdk index.ts instead of the vendored copy.
+#   .sha256, packed as Ardia's release fetches it.
 set -eu
 
-case "${1:-}" in ''|-h|--help) sed -n '2,7s/^# \{0,1\}//p' "$0"; exit 0 ;; esac
+case "${1:-}" in ''|-h|--help) sed -n '2,6s/^# \{0,1\}//p' "$0"; exit 0 ;; esac
 
 here=$(cd "$(dirname "$0")" && pwd)
 out=$(mkdir -p "$1" && cd "$1" && pwd)

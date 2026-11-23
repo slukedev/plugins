@@ -1,33 +1,46 @@
 {
   "repository": "https://github.com/ardia-browser/ardia",
   "path": "packages/plugin-sdk/src",
-  "commit": "1bd0e874e4c86d8c73231fa82752219b332a189d",
+  "commit": "e9cd845f11b8cddb838d2d2684da7c9db2720f88",
   "sha256": {
     "api.ts": "8178d054adec1dd75a60f06800d6b6260167ff746afeb3f5780f866019a22f8e",
     "componentProps.ts": "aceaf3b68a6e950a959bb4758c4cb4cb87fdf5053a6f2b0f3762d1f8cbd66604",
     "components.ts": "c8b1cb32b2572198ee6173a7c7a18442abc7282af43e273c5b8e9cc218cc87df",
+    "credentialCliManifest.ts": "43ec47b05542ebc2f8f2233fca972cd6051cf185692451212055ca9385b96120",
+    "credentialConstants.ts": "550fe3dbcd5142bd61d41f996eab3c73fb47d42a824ff0b6a085f85754da1ebe",
+    "credentialContext.ts": "d615044b8bd31a5e6abfa9737392a4d18bf8cfbfe3ac0d4445aa56d21a3e59fc",
+    "credentialData.ts": "11d21903b8b82d165a0bb445c47a82bdad813bd8899a8da883de4d4aae078125",
+    "credentialEnvManifest.ts": "bd16106fe69d08a1f664e26135a4f5292091c7e0474401d9a9169071d8ee9358",
+    "credentialErrors.ts": "94824e946c6d450b9af5bdbaa9a655f308036388e050fb622cf093331f3ba47a",
+    "credentialFakeOutput.ts": "e99d9cb3ee9438d537573b1b5f721264e7f570e719b253b91c5a674f89a461fa",
+    "credentialFakeVerbs.ts": "369dd97c617c21a3878593c6468ebee5981e767581c6f38fe40bd055d2010942",
+    "credentialHarnessState.ts": "7ed89ab2f6d7914d33d0faae9412be59a451dcfb14d464aa1f37ffbd3253f764",
+    "credentialManifest.ts": "302367dfd1896df11a93dff171ae52f82d7a5b4b9bc27d9aafdd08d7eea1344b",
+    "credentialManifestChecks.ts": "4533b8674e5d038b93fe92829c8df1d01ea979ee3cd3c8c0c273718969028d7c",
+    "credentialManifestTypes.ts": "e4134f48597f38edccbb86683c5f0cbb73971f9f14a9df6bb91a791afc869421",
+    "credentialMethods.ts": "b6087731c409b5204acf618c747ff4b0738f4d423c429e46d427c10aab8d41af",
+    "credentialRuntime.ts": "bfe9168a618032f4e61093c797df4bad75ec345ab63b59541beef3039c72d6c5",
+    "credentialSignInManifest.ts": "04d7063bd7c8e5188d58d8fc52492dc83cb1c98030f7d25533d7ab99a29d955d",
+    "credentialTesting.ts": "c1805bdd3b41dac0dc1643fed34e0d285b8d72a5fb51337db270f1a7b20cdfea",
+    "credentialTypes.ts": "7097fd7016bf2fc98cfd6210710528f8a6f7887f6494095f800fd6f6851fda86",
+    "credentialVerbManifest.ts": "3a122f074d30aa212b56b8989a904150618d3965940d8f755bf520e086c936ee",
+    "credentials.ts": "d558101d25a80bc2f78f56c9b1ec77988f971963846eed44cdd542a8921b3bf9",
+    "deniedCommands.ts": "139773fd05c5c0252deede0b1fc2171717d11f24e24ba0202c5343489b14d258",
     "element.ts": "e3bdcc1010e89a64a9d33d18ecb7c905720ee1fb6af671c6eb61df2421eef88f",
     "fiber.ts": "9a6d083914340d07fb017565c7e6b8c3fef352e5f58e520ef0b240a1a9df19af",
     "hooks.ts": "6d397563fafa02fea02c0a32991172f3e34b8b1d309a6a3644909c95c15d1973",
-    "index.ts": "2d75ce3a07781fc4b8a7a7c3cd7b2377e0282e4d509da6b5f0c24d26c2b9770a",
+    "index.ts": "53585fa0bb2869824bbca11ecdaf973c20abdc0f972bfc4d26d893ae42dc6459",
     "jsx.ts": "9630f51fb091d6f4fccc244eb0877b19fad666ce81081350137bd206b6964ea2",
     "jsxRuntime.ts": "e36354d5c7f91812df61287d88dab2278159ddf13a3bab7e1858dc1c39e4e96d",
-    "protocol.ts": "5d532d82814f58379a4e419f3aead3c9296f9760e4c055a95cc09008d7acf350",
+    "protocol.ts": "f15b47bfb145b55b266fd3dd567643440882869e9ef27f233cd67a0413dbf80c",
+    "quickPick.typecheck.ts": "0ce06e90fafec1c2e6569bf23d7e9543bb7f12a47d33b802f87e9ef3f01458bc",
     "reconciler.ts": "3e544e49d4fd5c9f70097f041ff115f2eca4407ab3eadb84be38746a662ce266",
     "rpc.ts": "584bd435c079780777025fd98888e6bd106922fc05c8ac049276e924bae3567c",
-    "runtime.ts": "a73c2964e717f03358ea478f5a9f08a76818d1daad049bbbf781047ed5fd9769",
+    "runtime.ts": "e37cfb873fbce0360aaed7205d71956d236373057512b7b9a23aac8f39e2f7e8",
     "surfaces.ts": "bea08b9f53ecbbcecc8971987a7f8aa59b02d65b9e1d1b4bbab9fd406f1b6835",
-    "types.ts": "1d2c11be2e1b86e9ab62abf232bac299d5b90204bca085ed5123e79ac2c9d872"
-  },
-  "changed": {
-    "index.ts": "exports credentials.ts and the runtime values from credentialsRuntime.ts"
-  },
-  "added": {
-    "credentials.ts": {
-      "from": "the credential-provider contract's sdk.ts, byte for byte",
-      "sha256": "a04f2e6e2d7073954ce078f99ffed48d87f0912ff82dd04967e227be3719fae3"
-    },
-    "credentialsRuntime.ts": "the runtime behind the values credentials.ts declares, until Ardia's SDK ships them",
-    "credentialsTesting.ts": "@ardia/plugin-sdk/testing: buildVerbLaunch, createCredentialHarness and checkCredentialManifest"
+    "testing.ts": "9dfa634c9eefcc75017d43cc744e671f94d742740c848ec1071fe03f581545cc",
+    "totp.ts": "d3025cd24865305f194949b53bf6fb32e5d965a249cdc34efa85e3f3e2236066",
+    "types.ts": "1d2c11be2e1b86e9ab62abf232bac299d5b90204bca085ed5123e79ac2c9d872",
+    "verbLaunch.ts": "d00021c35f2282353a51ee1ab854ee1a9ce0cb0eeb0220c8b987922259924459"
   }
 }

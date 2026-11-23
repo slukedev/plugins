@@ -39,9 +39,14 @@ describe("the vendored SDK's one-time codes", () => {
   });
 
   test("addresses it can't use are refused", () => {
-    for (const uri of ["otpauth://hotp/Ex?secret=JBSWY3DPEHPK3PXP", "otpauth://totp/Ex?secret=not!base32", "otpauth://totp/Ex?secret=JBSWY3DPEHPK3PXP&digits=5&issuer=Steam", "otpauth://totp/Ex?secret=JBSWY3DPEHPK3PXP&period=1", "https://example.com/?secret=JBSWY3DPEHPK3PXP", ""]) {
+    for (const uri of ["otpauth://hotp/Ex?secret=JBSWY3DPEHPK3PXP", "otpauth://totp/Ex?secret=not!base32", "otpauth://totp/Ex?secret=JBSWY3DPEHPK3PXP&period=1", "https://example.com/?secret=JBSWY3DPEHPK3PXP", ""]) {
       assert.equal(sdk.totp.parse(uri), null, uri);
     }
+  });
+
+  test("a Steam address reads as a five-character Steam code", () => {
+    const parsed = sdk.totp.parse("otpauth://totp/Ex?secret=JBSWY3DPEHPK3PXP&digits=5&issuer=Steam");
+    assert.deepEqual({ steam: parsed?.steam, digits: parsed?.digits }, { steam: true, digits: 5 });
   });
 
   test("the same secret in two spellings is the same code", () => {

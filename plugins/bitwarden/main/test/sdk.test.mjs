@@ -82,7 +82,7 @@ describe("credentials protocol", () => {
 
   test("pages stay under the page size even when one item is large", () => {
     const items = Array.from({ length: 30 }, (_, n) => ({ id: String(n), title: "t".repeat(n === 3 ? 500_000 : 40_000), username: "", urls: [] }));
-    const pages = sdk.pagesOf(items);
+    const pages = sdk.pageItems(items);
     assert.equal(pages.flat().length, 30);
     for (const page of pages) assert.ok(page.length === 1 || Buffer.byteLength(JSON.stringify(page)) <= sdk.CREDENTIAL_LIMITS.pageBytes);
   });

@@ -21,7 +21,7 @@ import {
   type ServerRef,
   type SignInOutcome,
   type VerbResult,
-} from "@ardia/plugin-sdk";
+} from "@ardia/plugin-sdk/credentials";
 import { editedItem, isGuid, listedItem, loginItem, loginOf, newLoginItem, passkeyJson, passkeyMaterial, passkeyMetadata, passkeysOf } from "./items";
 
 export const SYNC_INTERVAL_MS = 300_000;

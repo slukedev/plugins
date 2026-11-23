@@ -1,4 +1,4 @@
-import { CREDENTIAL_LIMITS, SignIn, json, type Choice, type CredentialContext, type JsonRecord, type ProblemCode, type ProviderState, type SignInOutcome } from "@ardia/plugin-sdk";
+import { CREDENTIAL_LIMITS, SignIn, json, type Choice, type CredentialContext, type JsonRecord, type ProblemCode, type ProviderState, type SignInOutcome } from "@ardia/plugin-sdk/credentials";
 import { ACCOUNT_PREFERENCE, problemOf } from "./cli";
 
 export type Account = { reference: string; names: string[]; email?: string; url?: string };

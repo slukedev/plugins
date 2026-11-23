@@ -1,24 +1,10 @@
-import { build } from "esbuild";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
+import { bundleForTests } from "../build.mjs";
 
 const here = (path) => fileURLToPath(new URL(path, import.meta.url));
 
-const bundled = await build({
-  entryPoints: [here("bundle.ts")],
-  bundle: true,
-  write: false,
-  format: "esm",
-  platform: "neutral",
-  target: "es2022",
-  alias: {
-    "@ardia/plugin-sdk/testing": here("../vendor/plugin-sdk/src/testing.ts"),
-    "@ardia/plugin-sdk": here("../vendor/plugin-sdk/src/index.ts"),
-  },
-  logLevel: "warning",
-});
-
-export const sdk = await import(`data:text/javascript;base64,${Buffer.from(bundled.outputFiles[0].text).toString("base64")}`);
+export const sdk = await bundleForTests(here("bundle.ts"));
 export const manifest = JSON.parse(readFileSync(here("../../plugin.json"), "utf8"));
 
 export const ACCOUNT = { url: "my.1password.com", email: "me@example.com", user_uuid: "USERUUID1", account_uuid: "ACCOUNTUUID1" };

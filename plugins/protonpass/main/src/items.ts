@@ -1,4 +1,4 @@
-import { CREDENTIAL_LIMITS, json, origins, totp, type Item, type JsonRecord, type ListedItem, type VerbResult } from "@ardia/plugin-sdk";
+import { CREDENTIAL_LIMITS, json, origins, totp, type Item, type JsonRecord, type ListedItem, type VerbResult } from "@ardia/plugin-sdk/credentials";
 
 export const APPROVAL_HOSTS = ["proton.me"];
 

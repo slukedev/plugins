@@ -1,4 +1,4 @@
-import type { CredentialProvider } from "@ardia/plugin-sdk";
+import type { CredentialProvider } from "@ardia/plugin-sdk/credentials";
 import { connect, providerState, signOut } from "./accounts";
 import { editItem } from "./edits";
 import { listItems, reveal } from "./items";

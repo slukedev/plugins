@@ -1,4 +1,4 @@
-import { CredentialError, verbs, type CredentialContext, type RunHints, type VerbParams, type VerbResult } from "@ardia/plugin-sdk";
+import { CredentialError, verbs, type CredentialContext, type RunHints, type VerbParams, type VerbResult } from "@ardia/plugin-sdk/credentials";
 
 export const ACCOUNT_PREFERENCE = "account";
 

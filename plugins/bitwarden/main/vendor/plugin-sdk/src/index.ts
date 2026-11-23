@@ -6,23 +6,10 @@ import type { PluginDefinition } from "./types";
 export * from "./jsx";
 export * from "./components";
 export * from "./protocol";
+export * from "./credentials";
 export { createHostRuntime, SDK_VERSION, type HostRuntime, type HostRuntimeOptions } from "./runtime";
 export { createRpc, PluginError, type Rpc, type Transport } from "./rpc";
 export { useSurface, type SurfaceInfo } from "./surfaces";
-export * from "./credentials";
-export {
-  CredentialError,
-  SignIn,
-  base64url,
-  credentialHandlersOf,
-  defineCredentialProvider,
-  isSecretHandle,
-  json,
-  origins,
-  totp,
-  uuids,
-  verbs,
-} from "./credentialsRuntime";
 export type { Ardia, PluginInfo, PluginResponse } from "./api";
 export type {
   Awaitable,

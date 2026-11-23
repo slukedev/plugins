@@ -5,7 +5,7 @@
   "title": "Proton Pass",
   "description": "Fills and saves logins and codes from Proton Pass.",
   "version": "1.0.0",
-  "requires": "1.40.0",
+  "requires": "0.2.49",
   "official": true,
   "keywords": ["proton", "proton pass", "pass-cli", "passwords"],
   "main": "dist/main.js",

@@ -1,4 +1,4 @@
-import { CREDENTIAL_LIMITS, CredentialError, json, totp, verbs, type CredentialContext, type Item, type JsonRecord, type RevealRequest, type Revealed } from "@ardia/plugin-sdk";
+import { CREDENTIAL_LIMITS, CredentialError, json, totp, verbs, type CredentialContext, type Item, type JsonRecord, type RevealRequest, type Revealed } from "@ardia/plugin-sdk/credentials";
 import { check, isItemId, requireUnlocked, withAccount } from "./cli";
 
 const HIDDEN_CHARACTERS = /[\u0000-\u001f\u007f-\u009f؜‎‏‪-‮⁦-⁩]/g;

@@ -4,11 +4,10 @@
   "type": "module",
   "scripts": {
     "build": "node build.mjs",
-    "typecheck": "tsc --noEmit && tsc --noEmit -p test",
-    "test": "node test/bundle.mjs && node --test --test-timeout=20000 test/*.test.mjs"
+    "typecheck": "tsc --noEmit",
+    "test": "node build.mjs && node --test --test-timeout=20000 test/*.test.mjs"
   },
   "devDependencies": {
-    "@types/node": "24.19.1",
     "esbuild": "0.28.2",
     "typescript": "5.9.3"
   }

@@ -5,7 +5,7 @@
   "title": "Bitwarden",
   "description": "Fills and saves logins, codes and passkeys from your Bitwarden vault.",
   "version": "1.0.0",
-  "requires": "1.40.0",
+  "requires": "0.2.49",
   "official": true,
   "keywords": [
     "bitwarden",

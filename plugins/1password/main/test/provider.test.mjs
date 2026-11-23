@@ -157,7 +157,9 @@ describe("sign in through the 1Password app", () => {
   for (const [name, reply, problem, extra = {}] of approvalRows) {
     test(`approval ${name} fails as ${problem} and leaves it signed out`, async () => {
       const { h } = harness([oneAccount, ["vault list*", reply]], { ...signedOut, ...extra });
-      const answer = await h.call("signIn", start);
+      const pending = h.call("signIn", start);
+      await h.advance(reply.finishAfterMs ?? 0);
+      const answer = await pending;
       assert.deepEqual(answer.result, { ok: false, problem });
       assert.equal(h.session, null);
     });

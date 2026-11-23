@@ -5,7 +5,7 @@
   "title": "1Password",
   "description": "Fills and saves logins and codes from 1Password, approved in the 1Password app.",
   "version": "1.0.0",
-  "requires": "1.40.0",
+  "requires": "0.2.49",
   "official": true,
   "keywords": [
     "1password",

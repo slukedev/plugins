@@ -13,12 +13,12 @@ import {
   type SecretHandle,
   type SignInOutcome,
   type VerbResult,
-} from "@ardia/plugin-sdk";
+} from "@ardia/plugin-sdk/credentials";
 import { approvalURL, createdId, itemId, listedItem, loginItem, loginOf, reference, usernameOf, vaultForNewItems, vaultsIn, type Reference, type Vault } from "./items";
 
-export const APPROVAL_WAIT_MS = 30_000;
-export const READ_TIMEOUT_MS = 90_000;
-export const LIST_DEADLINE_MS = 180_000;
+const APPROVAL_WAIT_MS = 30_000;
+const READ_TIMEOUT_MS = 90_000;
+const LIST_DEADLINE_MS = 180_000;
 const SHORTEST_LISTING_MS = 1_000;
 const OWNER_REASON = "unlock Proton Pass";
 

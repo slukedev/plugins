@@ -1,14 +1,8 @@
-import { mkdtempSync, readFileSync, rmSync } from "node:fs";
-import { tmpdir } from "node:os";
-import { join } from "node:path";
-import { fileURLToPath, pathToFileURL } from "node:url";
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { bundleForTests } from "../build.mjs";
 
-const folder = mkdtempSync(join(tmpdir(), "ardia-bitwarden-test-"));
-const outfile = join(folder, "entry.mjs");
-await bundleForTests(fileURLToPath(new URL("./entry.ts", import.meta.url)), outfile);
-export const sdk = await import(pathToFileURL(outfile).href);
-rmSync(folder, { recursive: true, force: true });
+export const sdk = await bundleForTests(fileURLToPath(new URL("./entry.ts", import.meta.url)));
 
 export const manifest = JSON.parse(readFileSync(new URL("../../plugin.json", import.meta.url), "utf8"));
 

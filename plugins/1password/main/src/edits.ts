@@ -1,4 +1,4 @@
-import { CredentialError, json, totp, type CredentialContext, type Item, type JsonRecord, type JsonValue, type LoginChange } from "@ardia/plugin-sdk";
+import { CredentialError, json, totp, type CredentialContext, type Item, type JsonRecord, type JsonValue, type LoginChange } from "@ardia/plugin-sdk/credentials";
 import { check, isItemId, requireUnlocked, withAccount } from "./cli";
 import { isOneTimeField, listedItem, purposeValue, revealedItem } from "./items";
 

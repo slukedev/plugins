@@ -12,7 +12,7 @@ import {
   type LoginChange,
   type NewPasskey,
   type UrlMatch,
-} from "@ardia/plugin-sdk";
+} from "@ardia/plugin-sdk/credentials";
 
 const LOGIN_TYPE = 1;
 const LONGEST_CREDENTIAL_ID = 1023;
